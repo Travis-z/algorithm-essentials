@@ -6,16 +6,18 @@ public class StackTest {
 
     @Test
     public void test0() {
+        Stack<Object> s = new Stack<>();
 
-        Stack<Integer> s = new Stack<>();
-
-        s.push(1);
-        s.push(2);
-        s.push(3);
+        s.push("aa");
+        s.push("bb");
+        s.push("cc");
+        System.out.println(s.size());
         System.out.println(s);
 
-        System.out.println(s.pop());
-        System.out.println(s.pop());
+        Object p1 = s.peek();
+        System.out.println(p1);
+
+        Object p2 = s.pop();
         System.out.println(s);
     }
 

@@ -1,49 +1,45 @@
 package com.guandao.base;
 
-/**
- * Stack
- * @param <E>
- */
 public class Stack<E> {
 
-    private int idx;
-    private final Varray<E> arr;
+    DynamicArray<E> data;
 
     public Stack() {
-        this.idx = -1;
-        this.arr = new Varray<>();
+        this.data = new Varray<>();
     }
 
-    public void push(E e) {
-        arr.set(++idx, e);
-    }
-
-    public E pop() {
-        if (empty()) throw new ArrayIndexOutOfBoundsException();
-        return arr.get(idx--);
+    public int push(E e) {
+        return data.add(e);
     }
 
     public E peek() {
-        if (empty()) throw new ArrayIndexOutOfBoundsException();
-        return arr.get(idx);
+        int size = data.size();
+        return data.get(size - 1);
     }
 
-    public boolean empty() {
-        return idx < 0;
+    public E pop() {
+        int size = data.size();
+        return data.remove(size - 1);
     }
 
     public int size() {
-        return idx + 1;
+        return data.size();
+    }
+
+    public boolean empty() {
+        return data.size() == 0;
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i <= idx; i++) {
-            sb.append(arr.get(i)).append(", ");
+        for (int i = 0; i < data.size(); i++) {
+            sb.append(data.get(i)).append(", ");
         }
+
         int len = sb.length();
-        return "Stack:[" + sb.substring(0, len > 2 ? (len - 2) : len) + "]";
+        int end = len - 2 > 0 ? len - 2 : len;
+        return "Stacked:[" + sb.substring(0, end) + "]";
     }
 
 }

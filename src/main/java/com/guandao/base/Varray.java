@@ -35,7 +35,7 @@ public class Varray<E> implements DynamicArray<E> {
 
     @Override
     public int insert(int idx, E e) {
-        if (idx < 0 || idx > size) throw new IllegalArgumentException("idx out of bounds");
+        if (idx < 0 || idx > size) throw new ArrayIndexOutOfBoundsException();
 
         // 数据大小达到数组容量时，进行扩容
         if (size >= data.length) redouble();
@@ -60,12 +60,14 @@ public class Varray<E> implements DynamicArray<E> {
         data = newData;
     }
 
+    /* 不能无限扩容，当达到最大倍增阈值时，直接取最大 Integer.MAX_VALUE */
     private void redouble() {
         if (data.length == Integer.MAX_VALUE) throw new OutOfMemoryError();
         int capacity = data.length < MAX_REDOUBLE ? (data.length << 1) : Integer.MAX_VALUE;
         resize(capacity);
     }
 
+    /* 注意边界：数组不能无限缩，只有在大于初始容量时才可能会进行缩容 */
     private void reduce() {
         if (data.length > INIT_CAPACITY && data.length / size == 2) {
             resize(data.length / 2);
@@ -75,7 +77,7 @@ public class Varray<E> implements DynamicArray<E> {
     @SuppressWarnings("unchecked")
     @Override
     public E remove(int idx) {
-        if (idx < 0 || idx >= size) throw new IllegalArgumentException("idx out of bounds");
+        if (idx < 0 || idx >= size) throw new ArrayIndexOutOfBoundsException();
 
         Object o = data[idx];
 
@@ -104,7 +106,7 @@ public class Varray<E> implements DynamicArray<E> {
     @SuppressWarnings("unchecked")
     @Override
     public E set(int idx, E e) {
-        if (idx < 0 || idx >= size) throw new IllegalArgumentException("idx out of bounds");
+        if (idx < 0 || idx >= size) throw new ArrayIndexOutOfBoundsException();
 
         Object o = data[idx];
         data[idx] = e;
@@ -114,6 +116,7 @@ public class Varray<E> implements DynamicArray<E> {
     @SuppressWarnings("unchecked")
     @Override
     public E get(int idx) {
+        if (idx < 0 || idx >= size) throw new ArrayIndexOutOfBoundsException();
         return (E) data[idx];
     }
 
@@ -121,7 +124,7 @@ public class Varray<E> implements DynamicArray<E> {
     public int find(E e) {
         // 按序查找，找到返回该元素的索引位置
         for (int i = 0; i < size; i++) {
-            if (data[i].equals(e)) return i;
+            if (get(i).equals(e)) return i;
         }
         // 找不到返回-1
         return -1;
