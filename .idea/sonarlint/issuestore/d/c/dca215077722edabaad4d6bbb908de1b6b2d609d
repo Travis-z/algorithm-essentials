@@ -1,0 +1,9 @@
+
+Q	java:S125"<This block of commented-out lines of code should be removed.(Ş…üœ
+O
+java:S3400"9Remove this method and declare a constant for this value.(”·³›
+F
+java:S1172"+Remove this unused method parameter "nums".(ôîù˜ıÿÿÿÿ
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇŠÆû
+b	java:S100<"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›ûâs
+h	java:S100["NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¡¼Ÿ´ıÿÿÿÿ

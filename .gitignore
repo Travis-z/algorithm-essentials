@@ -23,3 +23,24 @@
 hs_err_pid*
 
 # idea
+.idea
+*.iws
+*.iml
+*.ipr
+
+# netbeans
+/nbproject/private/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# eclipse
+/.eclipse
+.eclipse
+.eclipse/*
+/.project/
+*/.project
+.project/*
+.classpath
